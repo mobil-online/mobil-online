@@ -193,7 +193,6 @@
             window.open(`https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksTravel)}`, '_blank');
         }
 
-        // Teks diubah sesuai permintaan
         function pesanKonsultasi() {
             let teksKonsultasi = `Halo Admin Mobil Online, saya ingin bertanya-tanya.`;
             window.open(`https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksKonsultasi)}`, '_blank');
@@ -297,7 +296,7 @@
                         } catch (e) { inputJemput.value = "Titik GPS Ditemukan"; hitungRuteAsli(); }
                     },
                     (error) => {
-                        alert("Gagal mendapatkan lokasi. Pastikan GPS HP aktif dan Chrome/Safari diizinkan akses lokasi.");
+                        alert("Gagal mendapatkan lokasi. Pastikan GPS HP aktif dan peramban (Chrome/Safari) diizinkan mengakses lokasi.");
                         inputJemput.value = "";
                         document.getElementById('statusPeta').innerHTML = '<i class="fas fa-info-circle text-gray-500"></i> Menunggu lokasi...';
                     }, { enableHighAccuracy: true }
@@ -316,32 +315,22 @@
                 return;
             }
 
-            // PERUBAHAN BARU: Membuat Link Ajaib untuk Driver
-            // Sistem akan otomatis mengambil link website saat ini, lalu menambahkan /driver.html
-            let baseUrl = window.location.href.split('?')[0].replace('index.html', '');
-            if(!baseUrl.endsWith('/')) baseUrl += '/';
-            
-            let linkDriver = `${baseUrl}driver.html?j=${encodeURIComponent(jemput)}&t=${encodeURIComponent(tujuan)}&km=${jarakTotalKM}&rp=${tarifTotalRp}`;
-
+            // PERBAIKAN: Link Driver telah dihapus dari sini! 
+            // Pesan ini 100% aman untuk dilihat pelanggan.
             let teksWA = `Halo Admin, saya pesan KURIR MOBIL.
 
 📍 *Jemput:* ${jemput}
 🏁 *Tujuan:* ${tujuan}
-
 🛣 *Jarak:* ${jarakTotalKM} KM
 💰 *Tarif:* *${formatRupiah(tarifTotalRp)}*
 
-Mohon dicarikan driver.
-
-----------------------
-👇 *UNTUK ADMIN:* 
-*Copy link di bawah ini dan bagikan ke Grup WhatsApp Driver!*
-${linkDriver}`;
+Mohon dicarikan driver.`;
 
             let urlWA = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksWA)}`;
             window.open(urlWA, '_blank');
         }
 
+        // Untuk menutup dropdown saat layar ditekan
         document.addEventListener('click', function(event) {
             const dJ = document.getElementById('dropdownJemput'); const dT = document.getElementById('dropdownTujuan');
             const iJ = document.getElementById('inputJemput'); const iT = document.getElementById('inputTujuan');
