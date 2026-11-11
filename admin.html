@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard Admin - Mobil Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .app-container { max-width: 480px; margin: 0 auto; background-color: #f8fafc; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="app-container pb-10">
+        
+        <!-- Header -->
+        <div class="bg-gray-900 text-white p-5 text-center rounded-b-3xl shadow-lg">
+            <h1 class="font-black text-xl text-green-400"><i class="fas fa-user-shield"></i> DASHBOARD ADMIN</h1>
+            <p class="text-xs text-gray-300 mt-1">Pembuat Link Orderan Driver (Rahasia)</p>
+        </div>
+
+        <div class="p-5 mt-2">
+            
+            <div class="bg-white rounded-xl shadow-sm p-4 border border-gray-200 mb-6">
+                <label class="text-xs text-gray-500 font-bold uppercase mb-2 block"><i class="fas fa-paste text-blue-500"></i> 1. Paste Pesan Pelanggan Di Sini</label>
+                <p class="text-[10px] text-gray-400 mb-2">Copy pesan WA dari pelanggan, lalu paste ke kotak di bawah ini.</p>
+                <textarea id="boxPaste" rows="7" class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm text-gray-700 outline-none focus:border-blue-500" placeholder="Halo Admin, saya pesan KURIR MOBIL...&#10;📍 *Jemput:* ...&#10;🏁 *Tujuan:* ...&#10;..."></textarea>
+                <button onclick="prosesTeks()" class="w-full mt-3 bg-blue-600 text-white font-bold py-3 rounded-lg shadow hover:bg-blue-700 active:scale-95 transition">
+                    <i class="fas fa-magic"></i> EKSTRAK & BUAT LINK
+                </button>
+            </div>
+
+            <!-- Hasil Ekstraksi (Sembunyi sebelum diproses) -->
+            <div id="areaHasil" class="hidden">
+                <div class="bg-green-50 border border-green-200 rounded-xl p-4 mb-4">
+                    <h3 class="font-bold text-green-800 text-sm mb-3 border-b border-green-200 pb-2"><i class="fas fa-check-circle"></i> Data Berhasil Dibaca!</h3>
+                    
+                    <div class="grid grid-cols-2 gap-2 mb-2">
+                        <div>
+                            <p class="text-[10px] text-gray-500">Jemput</p>
+                            <p class="text-xs font-bold text-gray-800 truncate" id="resJemput">-</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500">Tujuan</p>
+                            <p class="text-xs font-bold text-gray-800 truncate" id="resTujuan">-</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500">Jarak</p>
+                            <p class="text-xs font-bold text-gray-800" id="resJarak">-</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500">Tarif</p>
+                            <p class="text-xs font-bold text-red-600" id="resTarif">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="bagikanKeGrup()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-green-600 active:scale-95 transition flex items-center justify-center gap-2 text-lg">
+                    <i class="fab fa-whatsapp text-2xl"></i> SHARE KE GRUP DRIVER
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let linkJadi = "";
+
+        function prosesTeks() {
+            let teks = document.getElementById('boxPaste').value;
+            
+            try {
+                // Mencari data di dalam teks menggunakan pola (Regex)
+                let jemput = teks.match(/📍 \*Jemput:\* (.*)/)[1];
+                let tujuan = teks.match(/🏁 \*Tujuan:\* (.*)/)[1];
+                let jarak = teks.match(/🛣 \*Jarak:\* (.*) KM/)[1];
+                let tarifKotor = teks.match(/💰 \*Tarif:\* \*Rp (.*)\*/)[1];
+                
+                // Menghilangkan titik pada angka tarif (misal 27.500 jadi 27500)
+                let tarifAngka = tarifKotor.replace(/\./g, '');
+
+                // Tampilkan hasil bacaan ke layar
+                document.getElementById('resJemput').innerText = jemput;
+                document.getElementById('resTujuan').innerText = tujuan;
+                document.getElementById('resJarak').innerText = jarak + " KM";
+                document.getElementById('resTarif').innerText = "Rp " + tarifKotor;
+
+                // Buat Link Drivernya!
+                let baseUrl = window.location.href.split('?')[0].replace('admin.html', '');
+                if(!baseUrl.endsWith('/')) baseUrl += '/';
+                linkJadi = `${baseUrl}driver.html?j=${encodeURIComponent(jemput)}&t=${encodeURIComponent(tujuan)}&km=${jarak}&rp=${tarifAngka}`;
+
+                document.getElementById('areaHasil').classList.remove('hidden');
+
+            } catch (error) {
+                alert("Gagal membaca teks! Pastikan Anda mem-paste pesan WA dari pelanggan secara utuh tanpa diubah.");
+            }
+        }
+
+        function bagikanKeGrup() {
+            let teksGrup = `🚨 *ORDERAN BARU MASUK!* 🚨\n\nSiapa cepat dia dapat!\nKlik link di bawah ini untuk melihat detail dan mengambil orderan:\n\n${linkJadi}`;
+            
+            // Ini akan membuka WA agar admin bisa memilih grup driver
+            let urlWA = `https://wa.me/?text=${encodeURIComponent(teksGrup)}`;
+            window.open(urlWA, '_blank');
+        }
+    </script>
+</body>
+</html>
