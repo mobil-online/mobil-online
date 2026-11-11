@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Orderan Masuk - Mobil Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .app-container { max-width: 480px; margin: 0 auto; background-color: #f8fafc; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+
+    <div class="app-container pb-10">
+        
+        <!-- Header -->
+        <div class="bg-gray-900 text-white p-5 text-center rounded-b-3xl shadow-lg relative overflow-hidden">
+            <div class="absolute -right-5 -top-5 opacity-10">
+                <i class="fas fa-car text-[100px]"></i>
+            </div>
+            <div class="relative z-10">
+                <h1 class="font-black text-xl uppercase tracking-widest text-yellow-400 drop-shadow-md"><i class="fas fa-bell animate-bounce"></i> Orderan Baru</h1>
+                <p class="text-xs text-gray-300 mt-1">Harap respons cepat sebelum diambil orang lain!</p>
+            </div>
+        </div>
+
+        <div class="p-5 mt-2">
+            
+            <!-- Detail Rute -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 border-l-[6px] border-blue-500 mb-4 relative">
+                <p class="text-[10px] text-gray-400 font-bold tracking-wider mb-1 uppercase">Titik Penjemputan</p>
+                <p class="font-bold text-gray-800 text-lg leading-tight" id="valJemput">Memuat data...</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm p-5 border-l-[6px] border-red-500 mb-5 relative">
+                <p class="text-[10px] text-gray-400 font-bold tracking-wider mb-1 uppercase">Lokasi Tujuan</p>
+                <p class="font-bold text-gray-800 text-lg leading-tight" id="valTujuan">Memuat data...</p>
+            </div>
+
+            <!-- Jarak & Harga Ringkas -->
+            <div class="flex gap-4 mb-6">
+                <div class="bg-white rounded-2xl shadow-sm p-4 flex-1 text-center border border-gray-100">
+                    <p class="text-[11px] text-gray-500 font-bold uppercase">Jarak Tempuh</p>
+                    <p class="font-black text-2xl text-gray-800 mt-1" id="valJarak">0 <span class="text-sm">KM</span></p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm p-4 flex-1 text-center border border-gray-100">
+                    <p class="text-[11px] text-gray-500 font-bold uppercase">Tarif Total</p>
+                    <p class="font-black text-xl text-red-600 mt-1" id="valTarif">Rp 0</p>
+                </div>
+            </div>
+
+            <!-- Box Transparansi Keuangan (Hitungan 10%) -->
+            <div class="bg-[#fefce8] border border-yellow-200 rounded-2xl p-5 mb-8 shadow-inner">
+                <div class="flex items-center gap-2 mb-4 border-b border-yellow-200 pb-3">
+                    <i class="fas fa-wallet text-yellow-600"></i>
+                    <h3 class="font-bold text-gray-800 text-sm">Rincian Pendapatan</h3>
+                </div>
+                
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs text-gray-600 font-medium">Uang dari Pelanggan</span>
+                    <span class="text-sm font-bold text-gray-800" id="valTarif2">Rp 0</span>
+                </div>
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs text-red-500 font-semibold bg-red-50 px-2 py-1 rounded">Potongan Admin (10%)</span>
+                    <span class="text-sm font-bold text-red-500" id="valPotongan">- Rp 0</span>
+                </div>
+                <div class="flex justify-between items-center mt-4 pt-3 border-t border-yellow-200 border-dashed">
+                    <span class="text-sm font-bold text-green-700 uppercase">Bersih Untuk Anda (90%)</span>
+                    <span class="text-2xl font-black text-green-600 tracking-tighter" id="valBersih">Rp 0</span>
+                </div>
+            </div>
+
+            <!-- Tombol Konfirmasi WA -->
+            <button onclick="ambilOrderan()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-[0_8px_20px_rgba(34,197,94,0.3)] hover:bg-green-600 active:scale-95 transition-all flex items-center justify-center gap-3 text-lg">
+                <i class="fab fa-whatsapp text-3xl"></i> SAYA AMBIL ORDERAN INI
+            </button>
+            <p class="text-[10px] text-center text-gray-400 mt-3">Tombol ini akan mengirim pesan konfirmasi ke nomor WA Admin Pusat.</p>
+        </div>
+    </div>
+
+    <script>
+        // GANTI DENGAN NOMOR WA ANDA (Sebagai penerima laporan dari driver)
+        const NOMOR_WA_ADMIN = "6282122227535"; 
+
+        function formatRupiah(angka) { return "Rp " + angka.toLocaleString('id-ID'); }
+
+        let dataJemput = "", dataTujuan = "", dataJarak = 0, dataTarif = 0;
+
+        // Saat halaman dimuat, baca URL Ajaib
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            
+            dataJemput = params.get('j') || "Tidak diketahui";
+            dataTujuan = params.get('t') || "Tidak diketahui";
+            dataJarak = parseFloat(params.get('km')) || 0;
+            dataTarif = parseInt(params.get('rp')) || 0;
+
+            // Hitung matematika
+            let potonganAdmin = dataTarif * 0.10;
+            let bersihDriver = dataTarif - potonganAdmin;
+
+            // Tampilkan ke layar web driver
+            document.getElementById('valJemput').innerText = dataJemput;
+            document.getElementById('valTujuan').innerText = dataTujuan;
+            document.getElementById('valJarak').innerHTML = `${dataJarak} <span class="text-sm">KM</span>`;
+            
+            document.getElementById('valTarif').innerText = formatRupiah(dataTarif);
+            document.getElementById('valTarif2').innerText = formatRupiah(dataTarif);
+            
+            document.getElementById('valPotongan').innerText = "- " + formatRupiah(potonganAdmin);
+            document.getElementById('valBersih').innerText = formatRupiah(bersihDriver);
+        };
+
+        // Jika driver menekan tombol ambil
+        function ambilOrderan() {
+            let teksDriver = `Bos Admin, saya siap ambil orderan ini! 🚘
+
+📍 Jemput: ${dataJemput}
+🏁 Tujuan: ${dataTujuan}
+💰 Tarif: ${formatRupiah(dataTarif)}
+
+Tolong berikan nomor HP penumpangnya bos.`;
+
+            let urlWA = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksDriver)}`;
+            window.open(urlWA, '_blank');
+        }
+    </script>
+</body>
+</html>
