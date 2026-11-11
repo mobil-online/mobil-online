@@ -3,340 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mobil Online Sidrap Pinrang Parepare</title>
+    <title>Orderan Masuk - Mobil Online</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-        .app-container { max-width: 480px; margin: 0 auto; background-color: white; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.1); position: relative; }
-        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        .app-container { max-width: 480px; margin: 0 auto; background-color: #f8fafc; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="app-container pb-10">
         
-        <!-- ============================================== -->
-        <!-- HALAMAN 1: MENU UTAMA (HOME)                   -->
-        <!-- ============================================== -->
-        <div id="page-home" class="block w-full h-full pb-10">
-            <!-- Header Halaman Utama -->
-            <div class="bg-red-600 text-white p-5 rounded-b-3xl shadow-lg relative overflow-hidden">
-                <div class="relative z-10 flex justify-between items-center">
-                    <div>
-                        <h1 class="font-bold text-2xl tracking-tight leading-tight">Mobil Online</h1>
-                        <p class="text-[11px] font-light mt-1 text-red-100">Sidrap - Pinrang - Parepare<br>Dan Sekitarnya</p>
-                    </div>
-                    <div class="text-3xl bg-white text-red-600 w-12 h-12 rounded-full flex items-center justify-center shadow-md">
-                        <i class="fas fa-car-side"></i>
-                    </div>
-                </div>
+        <!-- Header -->
+        <div class="bg-gray-900 text-white p-5 text-center rounded-b-3xl shadow-lg relative overflow-hidden">
+            <div class="absolute -right-5 -top-5 opacity-10">
+                <i class="fas fa-car text-[100px]"></i>
             </div>
-
-            <div class="px-5 mt-6 mb-4 text-center">
-                <h2 class="font-bold text-gray-800 text-xl">Selamat Datang 👋</h2>
-                <p class="text-sm text-gray-500 mt-1">Pilih layanan perjalanan Anda hari ini.</p>
-            </div>
-
-            <!-- Tombol-Tombol Menu -->
-            <div class="px-5 space-y-4 mt-6">
-                
-                <!-- MENU 1: KURIR MOBIL (Buka Peta) -->
-                <button onclick="bukaHalamanKurir()" class="w-full bg-white p-4 rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-4 hover:bg-red-50 hover:border-red-200 transition-all active:scale-[0.98]">
-                    <div class="w-14 h-14 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-2xl shadow-inner">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <div class="text-left flex-1">
-                        <h3 class="font-bold text-gray-800 text-lg">KURIR MOBIL</h3>
-                        <p class="text-[12px] text-gray-500 leading-tight mt-1">Antar jemput lokasi, sistem cek tarif dan jarak otomatis.</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
-                </button>
-
-                <!-- MENU 2: TRAVEL (Langsung WA) -->
-                <button onclick="pesanTravel()" class="w-full bg-white p-4 rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-4 hover:bg-blue-50 hover:border-blue-200 transition-all active:scale-[0.98]">
-                    <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl shadow-inner">
-                        <i class="fas fa-route"></i>
-                    </div>
-                    <div class="text-left flex-1">
-                        <h3 class="font-bold text-gray-800 text-lg">TRAVEL</h3>
-                        <p class="text-[12px] text-gray-500 leading-tight mt-1">Pesan kursi travel untuk perjalanan jauh / luar kota.</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
-                </button>
-
-                <!-- MENU 3: TANYA KAMI (Langsung WA) -->
-                <button onclick="pesanKonsultasi()" class="w-full bg-white p-4 rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] border border-gray-100 flex items-center gap-4 hover:bg-green-50 hover:border-green-200 transition-all active:scale-[0.98]">
-                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-2xl shadow-inner">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div class="text-left flex-1">
-                        <h3 class="font-bold text-gray-800 text-lg">TANYA KAMI</h3>
-                        <p class="text-[12px] text-gray-500 leading-tight mt-1">Chat admin untuk carter mobil / sewa harian / nego harga.</p>
-                    </div>
-                    <i class="fas fa-chevron-right text-gray-300"></i>
-                </button>
+            <div class="relative z-10">
+                <h1 class="font-black text-xl uppercase tracking-widest text-yellow-400 drop-shadow-md"><i class="fas fa-bell animate-bounce"></i> Orderan Baru</h1>
+                <p class="text-xs text-gray-300 mt-1">Harap respons cepat sebelum diambil orang lain!</p>
             </div>
         </div>
 
-        <!-- ============================================== -->
-        <!-- HALAMAN 2: KURIR MOBIL (FORM & PETA)           -->
-        <!-- ============================================== -->
-        <div id="page-kurir" class="hidden w-full min-h-screen pb-[120px] bg-gray-50">
+        <div class="p-5 mt-2">
             
-            <div class="bg-red-600 text-white p-4 rounded-b-3xl shadow-lg flex items-center gap-3 sticky top-0 z-40">
-                <button onclick="kembaliKeHome()" class="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center hover:bg-red-800 transition shadow-inner">
-                    <i class="fas fa-arrow-left"></i>
-                </button>
-                <div class="flex-1">
-                    <h1 class="font-bold text-xl">Pesan Kurir Mobil</h1>
-                    <p class="text-[10px] text-red-100">Jarak dan Tarif Otomatis</p>
+            <!-- Detail Rute -->
+            <div class="bg-white rounded-2xl shadow-sm p-5 border-l-[6px] border-blue-500 mb-4 relative">
+                <p class="text-[10px] text-gray-400 font-bold tracking-wider mb-1 uppercase">Titik Penjemputan</p>
+                <p class="font-bold text-gray-800 text-lg leading-tight" id="valJemput">Memuat data...</p>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-sm p-5 border-l-[6px] border-red-500 mb-5 relative">
+                <p class="text-[10px] text-gray-400 font-bold tracking-wider mb-1 uppercase">Lokasi Tujuan</p>
+                <p class="font-bold text-gray-800 text-lg leading-tight" id="valTujuan">Memuat data...</p>
+            </div>
+
+            <!-- Jarak & Harga Ringkas -->
+            <div class="flex gap-4 mb-6">
+                <div class="bg-white rounded-2xl shadow-sm p-4 flex-1 text-center border border-gray-100">
+                    <p class="text-[11px] text-gray-500 font-bold uppercase">Jarak Tempuh</p>
+                    <p class="font-black text-2xl text-gray-800 mt-1" id="valJarak">0 <span class="text-sm">KM</span></p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-sm p-4 flex-1 text-center border border-gray-100">
+                    <p class="text-[11px] text-gray-500 font-bold uppercase">Tarif Total</p>
+                    <p class="font-black text-xl text-red-600 mt-1" id="valTarif">Rp 0</p>
                 </div>
             </div>
 
-            <!-- AREA FORMULIR PESANAN -->
-            <div class="p-5 mt-2">
-                <div class="bg-white p-5 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 relative mb-5">
-                    <div class="absolute left-7 top-10 bottom-10 w-0.5 bg-gray-200 border-dashed border-l-2 z-0"></div>
-                    
-                    <!-- KOLOM TITIK JEMPUT (Dengan tombol Target GPS) -->
-                    <div class="flex items-start mb-6 relative z-20">
-                        <div class="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center mr-3 border-2 border-blue-500 mt-1 shadow-sm">
-                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        </div>
-                        <div class="flex-1 relative">
-                            <label class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Lokasi Penjemputan</label>
-                            <div class="relative">
-                                <input type="text" id="inputJemput" class="w-full text-sm text-gray-800 border-b-2 border-gray-200 focus:border-red-500 outline-none py-2 pr-8 bg-transparent font-medium transition-colors" placeholder="Ketik kecamatan / tempat..." oninput="cariLokasi('jemput')" autocomplete="off">
-                                <button onclick="dapatkanLokasiSaatIni()" class="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-500 transition-colors p-1" title="Gunakan Lokasi Saat Ini">
-                                    <i class="fas fa-crosshairs text-lg"></i>
-                                </button>
-                            </div>
-                            <ul id="dropdownJemput" class="absolute w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-xl z-50 max-h-56 overflow-y-auto hidden"></ul>
-                        </div>
-                    </div>
-
-                    <!-- KOLOM TITIK TUJUAN -->
-                    <div class="flex items-start relative z-10">
-                        <div class="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mr-3 border-2 border-red-500 mt-1 shadow-sm">
-                            <i class="fas fa-map-marker-alt text-red-500 text-[10px]"></i>
-                        </div>
-                        <div class="flex-1 relative">
-                            <label class="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Lokasi Tujuan</label>
-                            <input type="text" id="inputTujuan" class="w-full text-sm text-gray-800 border-b-2 border-gray-200 focus:border-red-500 outline-none py-2 bg-transparent font-medium transition-colors" placeholder="Ketik tujuan anda..." oninput="cariLokasi('tujuan')" autocomplete="off">
-                            <ul id="dropdownTujuan" class="absolute w-full bg-white border border-gray-200 rounded-lg mt-1 shadow-xl z-50 max-h-56 overflow-y-auto hidden"></ul>
-                        </div>
-                    </div>
+            <!-- Box Transparansi Keuangan (Hitungan 10%) -->
+            <div class="bg-[#fefce8] border border-yellow-200 rounded-2xl p-5 mb-8 shadow-inner">
+                <div class="flex items-center gap-2 mb-4 border-b border-yellow-200 pb-3">
+                    <i class="fas fa-wallet text-yellow-600"></i>
+                    <h3 class="font-bold text-gray-800 text-sm">Rincian Pendapatan</h3>
                 </div>
-
-                <!-- AREA INFORMASI JARAK & STATUS PETA -->
-                <div class="bg-blue-50 p-4 rounded-xl mb-5 border border-blue-100 flex items-center justify-between shadow-sm">
-                    <div>
-                        <p class="text-xs text-blue-800 font-semibold mb-1"><i class="fas fa-route mr-1"></i> Jarak Perjalanan</p>
-                        <p id="statusPeta" class="text-[10px] text-gray-500"><i class="fas fa-info-circle"></i> Menunggu lokasi...</p>
-                    </div>
-                    <div class="text-right flex items-baseline gap-1">
-                        <span id="tampilanJarak" class="text-2xl font-black text-gray-800 tracking-tighter">0</span>
-                        <span class="text-xs font-bold text-gray-500">KM</span>
-                    </div>
+                
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs text-gray-600 font-medium">Uang dari Pelanggan</span>
+                    <span class="text-sm font-bold text-gray-800" id="valTarif2">Rp 0</span>
                 </div>
-
-                <!-- AREA RINCIAN TARIF -->
-                <div class="bg-white p-5 rounded-2xl mb-4 border border-gray-200 shadow-sm">
-                    <div class="mb-3">
-                        <span class="text-green-700 text-xs font-bold block text-center bg-green-50 p-2 rounded-lg border border-green-200 shadow-sm">
-                            <i class="fas fa-gift mr-1 text-green-600"></i> Gratis penjemputan max 7 kilometer
-                        </span>
-                    </div>
-                    <div class="flex justify-between items-center border-t border-gray-100 pt-3 mt-1">
-                        <span class="text-gray-500 font-bold text-sm uppercase tracking-wider">Total Tarif</span>
-                        <span class="text-3xl font-black text-red-600 tracking-tighter" id="tampilanTarif">Rp 0</span>
-                    </div>
+                <div class="flex justify-between items-center mb-3">
+                    <span class="text-xs text-red-500 font-semibold bg-red-50 px-2 py-1 rounded">Potongan Admin (10%)</span>
+                    <span class="text-sm font-bold text-red-500" id="valPotongan">- Rp 0</span>
+                </div>
+                <div class="flex justify-between items-center mt-4 pt-3 border-t border-yellow-200 border-dashed">
+                    <span class="text-sm font-bold text-green-700 uppercase">Bersih Untuk Anda (90%)</span>
+                    <span class="text-2xl font-black text-green-600 tracking-tighter" id="valBersih">Rp 0</span>
                 </div>
             </div>
 
-            <!-- TOMBOL PESAN (MENEMPEL DI BAWAH) -->
-            <div class="fixed bottom-0 w-full max-w-[480px] bg-white p-4 border-t border-gray-200 shadow-[0_-15px_30px_rgba(0,0,0,0.05)] z-30 rounded-t-2xl">
-                <button onclick="kirimKurirKeWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 px-4 rounded-xl text-lg shadow-lg shadow-green-500/30 flex justify-center items-center gap-2 transition-all active:scale-[0.98]">
-                    <i class="fab fa-whatsapp text-2xl"></i> PESAN SEKARANG
-                </button>
-            </div>
+            <!-- Tombol Konfirmasi WA -->
+            <button onclick="ambilOrderan()" class="w-full bg-green-500 text-white font-bold py-4 rounded-xl shadow-[0_8px_20px_rgba(34,197,94,0.3)] hover:bg-green-600 active:scale-95 transition-all flex items-center justify-center gap-3 text-lg">
+                <i class="fab fa-whatsapp text-3xl"></i> SAYA AMBIL ORDERAN INI
+            </button>
+            <p class="text-[10px] text-center text-gray-400 mt-3">Tombol ini akan mengirim pesan konfirmasi ke nomor WA Admin Pusat.</p>
         </div>
     </div>
 
     <script>
+        // GANTI DENGAN NOMOR WA ANDA (Sebagai penerima laporan dari driver)
         const NOMOR_WA_ADMIN = "6282122227535"; 
-        const TARIF_PER_KM = 5500;
-        
-        let latJemput = null, lonJemput = null, latTujuan = null, lonTujuan = null;
-        let jarakTotalKM = 0, tarifTotalRp = 0;
-        let timeoutPencarian;
 
         function formatRupiah(angka) { return "Rp " + angka.toLocaleString('id-ID'); }
 
-        function bukaHalamanKurir() {
-            document.getElementById('page-home').classList.add('hidden');
-            document.getElementById('page-kurir').classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
+        let dataJemput = "", dataTujuan = "", dataJarak = 0, dataTarif = 0;
 
-        function kembaliKeHome() {
-            document.getElementById('page-kurir').classList.add('hidden');
-            document.getElementById('page-home').classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
+        // Saat halaman dimuat, baca URL Ajaib
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            
+            dataJemput = params.get('j') || "Tidak diketahui";
+            dataTujuan = params.get('t') || "Tidak diketahui";
+            dataJarak = parseFloat(params.get('km')) || 0;
+            dataTarif = parseInt(params.get('rp')) || 0;
 
-        function pesanTravel() {
-            let teksTravel = `Halo, saya ingin memesan travel\n\nDari :\nTujuan :`;
-            window.open(`https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksTravel)}`, '_blank');
-        }
+            // Hitung matematika
+            let potonganAdmin = dataTarif * 0.10;
+            let bersihDriver = dataTarif - potonganAdmin;
 
-        // Teks diubah sesuai permintaan
-        function pesanKonsultasi() {
-            let teksKonsultasi = `Halo Admin Mobil Online, saya ingin bertanya-tanya.`;
-            window.open(`https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksKonsultasi)}`, '_blank');
-        }
+            // Tampilkan ke layar web driver
+            document.getElementById('valJemput').innerText = dataJemput;
+            document.getElementById('valTujuan').innerText = dataTujuan;
+            document.getElementById('valJarak').innerHTML = `${dataJarak} <span class="text-sm">KM</span>`;
+            
+            document.getElementById('valTarif').innerText = formatRupiah(dataTarif);
+            document.getElementById('valTarif2').innerText = formatRupiah(dataTarif);
+            
+            document.getElementById('valPotongan').innerText = "- " + formatRupiah(potonganAdmin);
+            document.getElementById('valBersih').innerText = formatRupiah(bersihDriver);
+        };
 
-        async function cariLokasi(tipe) {
-            clearTimeout(timeoutPencarian);
-            const inputId = tipe === 'jemput' ? 'inputJemput' : 'inputTujuan';
-            const dropdownId = tipe === 'jemput' ? 'dropdownJemput' : 'dropdownTujuan';
-            const query = document.getElementById(inputId).value;
+        // Jika driver menekan tombol ambil
+        function ambilOrderan() {
+            let teksDriver = `Bos Admin, saya siap ambil orderan ini! 🚘
 
-            if (query.length < 3) { document.getElementById(dropdownId).classList.add('hidden'); return; }
+📍 Jemput: ${dataJemput}
+🏁 Tujuan: ${dataTujuan}
+💰 Tarif: ${formatRupiah(dataTarif)}
 
-            const dropdown = document.getElementById(dropdownId);
-            dropdown.innerHTML = '<li class="p-3 text-xs text-gray-500 italic flex items-center gap-2"><i class="fas fa-circle-notch fa-spin text-red-500"></i> Sedang mencari...</li>';
-            dropdown.classList.remove('hidden');
+Tolong berikan nomor HP penumpangnya bos.`;
 
-            timeoutPencarian = setTimeout(async () => {
-                try {
-                    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Sulawesi Selatan')}&limit=5`;
-                    const response = await fetch(url);
-                    const data = await response.json();
-                    
-                    dropdown.innerHTML = '';
-                    if (data.length > 0) {
-                        data.forEach(place => {
-                            const namaSingkat = place.display_name.split(',').slice(0, 3).join(', ');
-                            const li = document.createElement('li');
-                            li.className = 'p-3 border-b border-gray-100 text-[13px] text-gray-700 hover:bg-red-50 cursor-pointer font-medium flex items-start gap-2';
-                            li.innerHTML = `<i class="fas fa-map-marker-alt text-red-400 mt-0.5"></i> <span>${place.display_name}</span>`;
-                            li.onclick = () => pilihLokasi(tipe, namaSingkat, place.lat, place.lon);
-                            dropdown.appendChild(li);
-                        });
-                    } else {
-                        dropdown.innerHTML = '<li class="p-3 text-xs text-red-500 italic">Lokasi tidak ditemukan.</li>';
-                    }
-                } catch (e) {
-                    dropdown.innerHTML = '<li class="p-3 text-xs text-red-500 italic">Gagal menyambung ke satelit.</li>';
-                }
-            }, 800);
-        }
-
-        function pilihLokasi(tipe, nama, lat, lon) {
-            const inputId = tipe === 'jemput' ? 'inputJemput' : 'inputTujuan';
-            const dropdownId = tipe === 'jemput' ? 'dropdownJemput' : 'dropdownTujuan';
-            document.getElementById(inputId).value = nama;
-            document.getElementById(dropdownId).classList.add('hidden');
-            if (tipe === 'jemput') { latJemput = lat; lonJemput = lon; } else { latTujuan = lat; lonTujuan = lon; }
-            hitungRuteAsli();
-        }
-
-        async function hitungRuteAsli() {
-            if (!latJemput || !latTujuan) return; 
-
-            document.getElementById('statusPeta').innerHTML = '<i class="fas fa-circle-notch fa-spin text-blue-500"></i> Mengukur jarak...';
-            document.getElementById('tampilanJarak').innerText = "...";
-
-            try {
-                const url = `https://router.project-osrm.org/route/v1/driving/${lonJemput},${latJemput};${lonTujuan},${latTujuan}?overview=false`;
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (data.code === 'Ok') {
-                    let jarakKM = parseFloat((data.routes[0].distance / 1000).toFixed(1));
-                    if (jarakKM < 1) jarakKM = 1.0; 
-
-                    jarakTotalKM = jarakKM;
-                    document.getElementById('tampilanJarak').innerText = jarakKM;
-                    document.getElementById('statusPeta').innerHTML = '<i class="fas fa-check-circle text-green-600"></i> Jarak ditemukan';
-                    
-                    tarifTotalRp = jarakTotalKM * TARIF_PER_KM;
-                    document.getElementById('tampilanTarif').innerText = formatRupiah(tarifTotalRp);
-                }
-            } catch (e) {
-                document.getElementById('statusPeta').innerHTML = '<i class="fas fa-exclamation-triangle text-red-500"></i> Gagal mengukur jarak.';
-            }
-        }
-
-        function dapatkanLokasiSaatIni() {
-            const inputJemput = document.getElementById('inputJemput');
-            if (navigator.geolocation) {
-                inputJemput.value = "Mencari lokasi GPS...";
-                document.getElementById('statusPeta').innerHTML = '<i class="fas fa-satellite fa-spin text-blue-500"></i> Menghubungkan GPS...';
-                
-                navigator.geolocation.getCurrentPosition(
-                    async (position) => {
-                        latJemput = position.coords.latitude;
-                        lonJemput = position.coords.longitude;
-                        try {
-                            const url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latJemput}&lon=${lonJemput}`;
-                            const response = await fetch(url);
-                            const data = await response.json();
-                            if (data && data.display_name) {
-                                const namaSingkat = data.display_name.split(',').slice(0, 3).join(', ');
-                                inputJemput.value = namaSingkat + " (Lokasi Saya)";
-                                document.getElementById('statusPeta').innerHTML = '<i class="fas fa-check-circle text-green-600"></i> GPS akurat';
-                                hitungRuteAsli();
-                            } else {
-                                inputJemput.value = "Titik GPS Ditemukan"; hitungRuteAsli();
-                            }
-                        } catch (e) { inputJemput.value = "Titik GPS Ditemukan"; hitungRuteAsli(); }
-                    },
-                    (error) => {
-                        alert("Gagal mendapatkan lokasi. Pastikan GPS HP aktif dan Chrome/Safari diizinkan akses lokasi.");
-                        inputJemput.value = "";
-                        document.getElementById('statusPeta').innerHTML = '<i class="fas fa-info-circle text-gray-500"></i> Menunggu lokasi...';
-                    }, { enableHighAccuracy: true }
-                );
-            } else {
-                alert("Browser Anda tidak mendukung fitur GPS.");
-            }
-        }
-
-        function kirimKurirKeWhatsApp() {
-            let jemput = document.getElementById('inputJemput').value.trim();
-            let tujuan = document.getElementById('inputTujuan').value.trim();
-
-            if (!jemput || !tujuan) {
-                alert("Mohon isi lokasi penjemputan dan tujuan terlebih dahulu!");
-                return;
-            }
-
-            // PERBAIKAN: Hanya mengirim teks murni tanpa link driver agar aman dari pelanggan
-            let teksWA = `Halo Admin, saya pesan KURIR MOBIL.
-
-📍 *Jemput:* ${jemput}
-🏁 *Tujuan:* ${tujuan}
-
-🛣 *Jarak:* ${jarakTotalKM} KM
-💰 *Tarif:* *${formatRupiah(tarifTotalRp)}*
-
-Mohon dicarikan driver.`;
-
-            let urlWA = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksWA)}`;
+            let urlWA = `https://wa.me/${NOMOR_WA_ADMIN}?text=${encodeURIComponent(teksDriver)}`;
             window.open(urlWA, '_blank');
         }
-
-        document.addEventListener('click', function(event) {
-            const dJ = document.getElementById('dropdownJemput'); const dT = document.getElementById('dropdownTujuan');
-            const iJ = document.getElementById('inputJemput'); const iT = document.getElementById('inputTujuan');
-            if (event.target !== iJ && !dJ.contains(event.target)) dJ.classList.add('hidden');
-            if (event.target !== iT && !dT.contains(event.target)) dT.classList.add('hidden');
-        });
     </script>
 </body>
 </html>
