@@ -156,7 +156,6 @@
 
     <script>
         const NOMOR_WA_ADMIN = "6282122227535"; 
-        const TARIF_PER_KM = 5500;
         
         let latJemput = null, lonJemput = null, latTujuan = null, lonTujuan = null;
         let jarakTotalKM = 0, tarifTotalRp = 0;
@@ -265,7 +264,25 @@
                     document.getElementById('tampilanJarak').innerText = jarakKM;
                     document.getElementById('statusPeta').innerHTML = '<i class="fas fa-check-circle text-green-600"></i> Jarak ditemukan';
                     
-                    tarifTotalRp = jarakTotalKM * TARIF_PER_KM;
+                    // === LOGIKA TARIF BARU ===
+                    let hitungTarif = 0;
+                    
+                    if (jarakTotalKM <= 5) {
+                        // Jarak sampai 5 KM dihitung 5.500/KM
+                        hitungTarif = jarakTotalKM * 5500;
+                    } else {
+                        // Jarak lebih dari 5 KM: 5 KM pertama 5.500, sisanya 5.700
+                        hitungTarif = (5 * 5500) + ((jarakTotalKM - 5) * 5700);
+                    }
+
+                    // Terapkan Tarif Minimum Rp 20.000
+                    if (hitungTarif < 20000) {
+                        tarifTotalRp = 20000;
+                    } else {
+                        tarifTotalRp = Math.round(hitungTarif); // Dibulatkan agar rapi
+                    }
+                    // =========================
+
                     document.getElementById('tampilanTarif').innerText = formatRupiah(tarifTotalRp);
                 }
             } catch (e) {
